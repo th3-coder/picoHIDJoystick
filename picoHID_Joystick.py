@@ -12,11 +12,12 @@ from adafruit_debouncer import Debouncer
 #HID member 
 kbd = Keyboard(usb_hid.devices)
 
-#joystick pins
+#joystick pins (A0 - 26) (A0 - 27)
 jy = analogio.AnalogIn(board.A1)
 jx = analogio.AnalogIn(board.A0)
 
 #button, debounce library to ensure accurate button presses
+#button on pin GP21 but can be placed on any GPIO pin
 pin = digitalio.DigitalInOut(board.GP21)
 pin.direction = digitalio.Direction.INPUT
 pin.pull = digitalio.Pull.UP
@@ -61,6 +62,7 @@ while True:
     #check if current direction is same as previous, if so skips entire branch
     if (prevX, prevY) != (x, y):
         
+        #only runs if current input is diffent than last input !
         kbd.release_all()
         
         #HID ouputs using adafruit_hid library
@@ -87,6 +89,9 @@ while True:
     if not button.value:
         kbd.press(Keycode.SPACE)
         kbd.release(Keycode.SPACE)
+    
+    #store current input direction to compare with next inputs
     prevX, prevY = x, y
         
+    #10 ms delay
     time.sleep(0.01)
