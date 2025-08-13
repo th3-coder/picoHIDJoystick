@@ -10,9 +10,9 @@ Raspberry Pi Pico (1-2) joystick with button project
 3. COPY ALL ENTIRE LIB DIRECTORY AND main.py file (v1 or v2) directly on to pico storage device
 
 4. Either 
-* run code directly from choice of ide (thonny preferably) or 
+    * run code directly from choice of ide (thonny preferably) or 
     
-* unplug and plug back in
+    * unplug and plug back in
  
 
  *** main.py will looped and interpreted everytime the pico device is plugged in *** 
